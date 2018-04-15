@@ -5,6 +5,8 @@ module Cautious.Cautious where
 
 import Import
 
+import qualified Data.Aeson as JSON
+
 data Cautious w e a
     = CautiousWarning w
                       a
@@ -36,3 +38,9 @@ instance (Eq w, Eq e, Eq a) => Eq (Cautious w e a) where
     (==) (CautiousWarning w a) (CautiousWarning w' a') = w == w' && a == a'
     (==) (CautiousError e) (CautiousError e') = e == e'
     _ == _ = False
+
+instance (JSON.FromJSON a, JSON.FromJSON w, JSON.FromJSON e) =>
+         JSON.FromJSON (Cautious w e a)
+
+instance (JSON.ToJSON a, JSON.ToJSON w, JSON.ToJSON e) =>
+         JSON.ToJSON (Cautious w e a)

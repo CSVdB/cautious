@@ -2,10 +2,10 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 974329d417f0d30dfeb83fd779f2cf37bda0cfcd4bb7a95bb1c8cd663efc5986
+-- hash: 8b9da1a1772aa6520617ce70f5e13cc9e31103bb2406f4d33118650185b97a5b
 
 name:           cautious
-version:        0.0.0.0
+version:        0.1.0.0
 synopsis:       Keep track of warnings and errors during calculations.
 description:    A Cautious monad "Monoid w => Cautious w e a" which keeps track of the success of a task. The options are "CautiousWarning w a" (where "CautiousWarning mempty a" represents "success") and "CautiousError e". In addition, there is a monadtransformer "Monad m, Monoid w => CautiousT w e m a"
 category:       Testing
@@ -34,16 +34,20 @@ library
   ghc-options: -Wall
   build-depends:
       QuickCheck >=2.9 && <2.11
-    , base >=4.11 && <5
+    , aeson
+    , base >=4.10 && <5
+    , genvalidity
+    , genvalidity-hspec-aeson
     , hspec
     , hspec-discover
     , transformers
     , validity
   exposed-modules:
-      Import
       Cautious.Cautious
       Cautious.CautiousT
+      Cautious.Gen
   other-modules:
+      Import
       Paths_cautious
   default-language: Haskell2010
 
@@ -55,17 +59,18 @@ test-suite cautious-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       QuickCheck
-    , base >=4.11 && <5
+    , aeson
+    , base >=4.10 && <5
     , cautious
     , genvalidity
     , genvalidity-hspec
+    , genvalidity-hspec-aeson
     , hspec
     , hspec-discover
     , transformers
     , validity
   other-modules:
       Cautious.CautiousSpec
-      Cautious.Gen
       TestImport
       Paths_cautious
   default-language: Haskell2010

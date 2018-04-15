@@ -18,6 +18,7 @@ spec :: Spec
 spec = do
     genValidSpec @(CautiousExample Int)
     eqSpec @(CautiousExample Int)
+    jsonSpecOnValid @(CautiousExample Int)
     functorSpecOnValid @CautiousExample
     applicativeSpecOnValid @CautiousExample
     monadSpecOnValid @CautiousExample

@@ -3,10 +3,10 @@
 
 module Cautious.Gen where
 
-import TestImport
-
 import Cautious.Cautious
 import Cautious.CautiousT
+
+import Data.GenValidity
 
 instance (GenUnchecked a, GenUnchecked w, GenUnchecked e) =>
          GenUnchecked (Cautious w e a)

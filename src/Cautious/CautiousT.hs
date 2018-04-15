@@ -15,16 +15,24 @@ newtype CautiousT w e (m :: * -> *) a = CautiousT
     { runCautiousT :: m (Cautious w e a)
     } deriving (Generic, Functor)
 
-cautiousCautiousWarning :: Monad m => w -> m a -> CautiousT w e m a
-cautiousCautiousWarning w ma = CautiousT $ CautiousWarning w <$> ma
+cautiousWarning :: Monad m => w -> a -> CautiousT w e m a
+cautiousWarning w a = CautiousT . pure $ CautiousWarning w a
 
-cautiousCautiousError :: Monad m => e -> CautiousT w e m a
-cautiousCautiousError e = CautiousT . pure $ CautiousError e
+cautiousWarningIfNothing ::
+       (Monoid w, Monad m) => w -> Maybe a -> CautiousT w e m (Maybe a)
+cautiousWarningIfNothing w Nothing = cautiousWarning w Nothing
+cautiousWarningIfNothing _ (Just a) = cautiousWarning mempty $ Just a
 
-cautiousCautiousErrorIfNothing ::
+cautiousWarningM :: Monad m => w -> m a -> CautiousT w e m a
+cautiousWarningM w ma = CautiousT $ CautiousWarning w <$> ma
+
+cautiousError :: Monad m => e -> CautiousT w e m a
+cautiousError e = CautiousT . pure $ CautiousError e
+
+cautiousErrorIfNothing ::
        (Monoid w, Monad m) => Maybe a -> e -> CautiousT w e m a
-cautiousCautiousErrorIfNothing Nothing e = CautiousT . pure $ CautiousError e
-cautiousCautiousErrorIfNothing (Just a) _ = pure a
+cautiousErrorIfNothing Nothing e = CautiousT . pure $ CautiousError e
+cautiousErrorIfNothing (Just a) _ = pure a
 
 instance (Applicative m, Monoid w) => Applicative (CautiousT w e m) where
     pure = CautiousT . pure . pure

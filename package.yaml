@@ -1,5 +1,5 @@
 name:                cautious
-version:             0.0.0.0
+version:             0.1.0.0
 category:            Testing
 github:              "Nickske666/cautious"
 license:             BSD3
@@ -13,19 +13,22 @@ extra-source-files:
 - README.md
 - ChangeLog.md
 dependencies:
-- base >= 4.11 && < 5
-- hspec -any
-- hspec-discover -any
-- validity -any
-- transformers -any
+- base >= 4.10 && < 5
+- hspec
+- hspec-discover
+- validity
+- transformers
 - QuickCheck >= 2.9 && < 2.11
+- aeson
+- genvalidity
+- genvalidity-hspec-aeson
 library:
   source-dirs: src/
   ghc-options: -Wall
   exposed-modules:
-  - Import
   - Cautious.Cautious
   - Cautious.CautiousT
+  - Cautious.Gen
   default-extensions: NoImplicitPrelude
 tests:
   cautious-test:
@@ -39,5 +42,4 @@ tests:
     - cautious
     - hspec
     - genvalidity-hspec
-    - genvalidity
     - QuickCheck
