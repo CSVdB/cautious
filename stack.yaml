@@ -1,3 +1,5 @@
 flags: {}
 packages:
+- cautious
+- cautious-gen
 resolver: lts-10.0

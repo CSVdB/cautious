@@ -1,0 +1,33 @@
+name:                cautious-gen
+version:             0.0.0.0
+category:            Testing
+github:              "Nickske666/cautious"
+license:             BSD3
+author:              "Nick Van den Broeck"
+maintainer:          "nick.van.den.broeck666@gmail.com"
+copyright:           "2018 Nick Van den Broeck"
+description:         GenValid instances for Cautious and CautiousT
+dependencies:
+- base >= 4.10 && < 5
+- cautious >= 0.3
+- genvalidity
+default-extensions: NoImplicitPrelude
+library:
+  source-dirs: src/
+  ghc-options: -Wall
+  exposed-modules:
+  - Cautious.Gen
+tests:
+  cautious-test:
+    main:                Spec.hs
+    source-dirs:         test/
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hspec
+    - cautious-gen
+    - genvalidity-hspec
+    - genvalidity-hspec-aeson
+    - QuickCheck

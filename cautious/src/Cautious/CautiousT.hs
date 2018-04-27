@@ -3,7 +3,10 @@
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE UndecidableInstances #-}
 
-module Cautious.CautiousT where
+module Cautious.CautiousT
+    ( module Cautious.Cautious
+    , module Cautious.CautiousT
+    ) where
 
 import Import
 

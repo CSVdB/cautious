@@ -1,5 +1,5 @@
 name:                cautious
-version:             0.1.0.0
+version:             0.3.0.0
 category:            Testing
 github:              "Nickske666/cautious"
 license:             BSD3
@@ -9,37 +9,15 @@ copyright:           "2018 Nick Van den Broeck"
 description:         A Cautious monad "Monoid w => Cautious w e a" which keeps track of the success of a task. The options are "CautiousWarning w a" (where "CautiousWarning mempty a" represents "success") and "CautiousError e".
                      In addition, there is a monadtransformer "Monad m, Monoid w => CautiousT w e m a"
 synopsis:            Keep track of warnings and errors during calculations.
-extra-source-files:
-- README.md
-- ChangeLog.md
+default-extensions: NoImplicitPrelude
 dependencies:
 - base >= 4.10 && < 5
-- hspec
-- hspec-discover
 - validity
 - transformers
-- QuickCheck >= 2.9 && < 2.11
 - aeson
-- genvalidity
-- genvalidity-hspec-aeson
 library:
   source-dirs: src/
   ghc-options: -Wall
   exposed-modules:
   - Cautious.Cautious
   - Cautious.CautiousT
-  - Cautious.Gen
-  default-extensions: NoImplicitPrelude
-tests:
-  cautious-test:
-    main:                Spec.hs
-    source-dirs:         test/
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - cautious
-    - hspec
-    - genvalidity-hspec
-    - QuickCheck
