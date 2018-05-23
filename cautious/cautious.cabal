@@ -2,12 +2,12 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7aafe21e08fef384e52cf4d726dd4728a5487503f548422324219d920e211d36
+-- hash: 39e51bc966040a61f96876f3d4a1dd688b0bbefdc8d2392fcdca656a1fdb04b0
 
 name:           cautious
 version:        0.3.0.0
 synopsis:       Keep track of warnings and errors during calculations.
-description:    A Cautious monad "Monoid w => Cautious w e a" which keeps track of the success of a task. The options are "CautiousWarning w a" (where "CautiousWarning mempty a" represents "success") and "CautiousError e". In addition, there is a monadtransformer "Monad m, Monoid w => CautiousT w e m a"
+description:    A Cautious monad "Monoid w => Cautious w e a" which keeps track of the success of a task. The options are "CautiousWarning w a" (where "CautiousWarning mempty a" represents "success") and "CautiousError e". In addition, there is a monadtransformer "Monad m, Monoid w => CautiousT w e m a". For the genvalidity instances, see <https://hackage.haskell.org/package/cautious-gen cautious-gen>.
 category:       Testing
 homepage:       https://github.com/Nickske666/cautious#readme
 bug-reports:    https://github.com/Nickske666/cautious/issues
